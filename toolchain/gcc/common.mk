@@ -30,7 +30,7 @@ ifdef CONFIG_GCC_VERSION_LLVM
   PKG_REV:=83504
   GCC_DIR:=llvm-gcc-4.2-r$(PKG_REV)
   PKG_VERSION:=4.2.1
-  PKG_SOURCE:=$(GCC_DIR).tar.gz
+  PKG_SOURCE:=$(GCC_DIR).tar.xz
   PKG_SOURCE_PROTO:=git
   PKG_SOURCE_URL:=git://repo.or.cz/llvm-gcc-4.2.git
   PKG_SOURCE_SUBDIR:=$(GCC_DIR)
@@ -61,7 +61,7 @@ ifeq ($(findstring linaro, $(CONFIG_GCC_VERSION)),linaro)
     HOST_BUILD_DIR:=$(BUILD_DIR_TOOLCHAIN)/$(GCC_DIR)
 else
   PKG_SOURCE_URL:=@GNU/gcc/gcc-$(PKG_VERSION)
-  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+  PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 
   ifeq ($(PKG_VERSION),4.4.7)
     PKG_MD5SUM:=295709feb4441b04e87dea3f1bab4281
@@ -173,6 +173,8 @@ endif
 GCC_MAKE:= \
 	export SHELL="$(BASH)"; \
 	$(MAKE) $(TOOLCHAIN_JOBS) \
+		CFLAGS="-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk" \
+		LDFLAGS="-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib -L/usr/lib "
 		CFLAGS_FOR_TARGET="$(TARGET_CFLAGS)" \
 		CXXFLAGS_FOR_TARGET="$(TARGET_CFLAGS)"
 

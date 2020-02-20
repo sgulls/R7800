@@ -7,10 +7,9 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gdb
-PKG_VERSION:=linaro-7.2-2011.03-0
+PKG_VERSION:=8.3.1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_MD5SUM:=747b655418058964451eff7c7a15013c
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=http://launchpad.net/gdb-linaro/7.2/7.2-2011.03-0/+download/
 
 HOST_BUILD_PARALLEL:=1

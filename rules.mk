@@ -33,8 +33,11 @@ define sep
 
 endef
 
+LDFLAGS=-L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib -L/usr/lib
 _SINGLE=export MAKEFLAGS=$(space);
-CFLAGS:=
+CPPFLAGS:=-I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include
+CFLAGS:=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
+CXXFLAGS:=
 ARCH:=$(subst i486,i386,$(subst i586,i386,$(subst i686,i386,$(call qstrip,$(CONFIG_ARCH)))))
 ARCH_PACKAGES:=$(call qstrip,$(CONFIG_TARGET_ARCH_PACKAGES))
 BOARD:=$(call qstrip,$(CONFIG_TARGET_BOARD))
@@ -182,10 +185,10 @@ PKG_CONFIG:=$(STAGING_DIR_HOST)/bin/pkg-config
 
 export PKG_CONFIG
 
-HOSTCC:=gcc
-HOST_CPPFLAGS:=-I$(STAGING_DIR_HOST)/include
-HOST_CFLAGS:=-O2 $(HOST_CPPFLAGS)
-HOST_LDFLAGS:=-L$(STAGING_DIR_HOST)/lib
+HOSTCC:=clang
+HOST_CPPFLAGS:=-I$(STAGING_DIR_HOST)/include -I/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include -I/usr/local/Cellar/openssl@1.1/1.1.1d/include
+HOST_CFLAGS:=-O2 $(HOST_CPPFLAGS) -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk
+HOST_LDFLAGS:=-L$(STAGING_DIR_HOST)/lib -L/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib -L/usr/lib -L/usr/local/Cellar/openssl@1.1/1.1.1d/lib
 
 TARGET_CC:=$(TARGET_CROSS)gcc
 TARGET_AR:=$(TARGET_CROSS)ar

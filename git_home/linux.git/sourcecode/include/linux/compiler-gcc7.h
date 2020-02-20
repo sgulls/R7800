@@ -1,0 +1,1 @@
+git_home/linux.git/sourcecode/include/linux/compiler-gcc6.h

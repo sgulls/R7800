@@ -35,6 +35,7 @@ HOST_CONFIGURE_VARS += \
 	gdb_cv_func_sigsetjmp=yes
 
 HOST_CONFIGURE_ARGS = \
+	CFLAGS="-O2 -I/Library/Developer/CommandLineTools/Library/PrivateFrameworks/LLDB.framework/Versions/A/Resources/Clang/include"
 	--prefix=$(TOOLCHAIN_DIR) \
 	--build=$(GNU_HOST_NAME) \
 	--host=$(GNU_HOST_NAME) \
